@@ -1,6 +1,8 @@
-import { Phone, Clock, MapPin, Droplets, Wrench, Flame, ShieldCheck, CheckCircle, Star } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Phone, Clock, MapPin, Droplets, Wrench, Flame, ShieldCheck, CheckCircle, Star, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-plumber.jpg";
+import ReviewsSection from "@/components/ReviewsSection";
 
 const Index = () => {
   const services = [
@@ -48,19 +50,29 @@ const Index = () => {
             <a href="#services" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
               Services
             </a>
-            <a href="#about" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-              About
+            <a href="#reviews" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+              Reviews
             </a>
+            <Link to="/gallery" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+              Gallery
+            </Link>
             <a href="#contact" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
               Contact
             </a>
           </div>
-          <a href="tel:0685805133">
-            <Button variant="cta" size="sm" className="gap-2">
-              <Phone className="w-4 h-4" />
-              <span className="hidden sm:inline">Call Now</span>
-            </Button>
-          </a>
+          <div className="flex items-center gap-2">
+            <Link to="/book">
+              <Button variant="hero" size="sm" className="gap-2 hidden sm:flex bg-secondary text-secondary-foreground hover:bg-secondary/90">
+                Book Service
+              </Button>
+            </Link>
+            <a href="tel:0685805133">
+              <Button variant="cta" size="sm" className="gap-2">
+                <Phone className="w-4 h-4" />
+                <span className="hidden sm:inline">Call Now</span>
+              </Button>
+            </a>
+          </div>
         </div>
       </nav>
 
@@ -103,15 +115,20 @@ const Index = () => {
               className="flex flex-col sm:flex-row gap-4 animate-fade-in"
               style={{ animationDelay: "0.3s" }}
             >
-              <a href="tel:0685805133">
+              <Link to="/book">
                 <Button variant="cta" size="lg" className="w-full sm:w-auto gap-2">
-                  <Phone className="w-5 h-5" />
-                  068 580 5133
+                  <MessageSquare className="w-5 h-5" />
+                  Book a Service
                 </Button>
-              </a>
-              <a href="#services">
-                <Button variant="hero" size="lg" className="w-full sm:w-auto">
-                  View Services
+              </Link>
+              <a
+                href="https://wa.me/27685805133?text=Hi%20Jeff%20Plumbing!%20I%20would%20like%20to%20request%20a%20quote."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button variant="hero" size="lg" className="w-full sm:w-auto gap-2">
+                  <Phone className="w-5 h-5" />
+                  Request a Quote
                 </Button>
               </a>
             </div>
@@ -204,6 +221,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Reviews Section */}
+      <ReviewsSection />
 
       {/* Contact Section */}
       <section id="contact" className="py-24 bg-hero-gradient">
