@@ -121,16 +121,15 @@ const Index = () => {
                   Book a Service
                 </Button>
               </Link>
-              <a
-                href="https://wa.me/27685805133?text=Hi%20Jeff%20Plumbing!%20I%20would%20like%20to%20request%20a%20quote."
-                target="_blank"
-                rel="noopener noreferrer"
+              <Button
+                variant="hero"
+                size="lg"
+                className="w-full sm:w-auto gap-2"
+                onClick={() => window.open("https://wa.me/27685805133?text=Hi%20Jeff%20Plumbing!%20I%20would%20like%20to%20request%20a%20quote.", "_blank")}
               >
-                <Button variant="hero" size="lg" className="w-full sm:w-auto gap-2">
-                  <Phone className="w-5 h-5" />
-                  Request a Quote
-                </Button>
-              </a>
+                <Phone className="w-5 h-5" />
+                Request a Quote
+              </Button>
             </div>
 
             <div
