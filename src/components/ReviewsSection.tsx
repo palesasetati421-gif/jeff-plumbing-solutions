@@ -110,16 +110,26 @@ const ReviewsSection = () => {
           ))}
         </div>
 
-        {/* Action Button - Google Reviews Only */}
-        <div className="flex justify-center">
+        {/* Action Buttons - Google Reviews Only */}
+        <div className="flex flex-col sm:flex-row justify-center gap-4">
           <a
-            href="https://www.google.com/maps/place/Jeffplumbing"
+            href="https://share.google/s2jbT2UARx30Jryqc"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Button variant="cta" className="gap-2">
+            <Button variant="cta" className="gap-2 w-full sm:w-auto">
               <ExternalLink className="w-4 h-4" />
               Leave a Review on Google
+            </Button>
+          </a>
+          <a
+            href="https://share.google/s2jbT2UARx30Jryqc"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button variant="outline" className="gap-2 w-full sm:w-auto">
+              <ExternalLink className="w-4 h-4" />
+              View All Reviews on Google
             </Button>
           </a>
         </div>
