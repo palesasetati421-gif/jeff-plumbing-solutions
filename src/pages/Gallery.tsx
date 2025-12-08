@@ -13,6 +13,9 @@ import geyserSetup from "@/assets/gallery/geyser-setup.jpg";
 import bathroomInstall from "@/assets/gallery/bathroom-install.jpg";
 import copperPiping from "@/assets/gallery/copper-piping.jpg";
 import bathtubInstall from "@/assets/gallery/bathtub-install.webp";
+import pipeWork from "@/assets/gallery/pipe-work.jpg";
+import modernBathroom from "@/assets/gallery/modern-bathroom.jpg";
+import copperInstallation from "@/assets/gallery/copper-installation.jpg";
 
 const Gallery = () => {
   const galleryImages = [
@@ -26,6 +29,9 @@ const Gallery = () => {
     { id: 8, src: geyserMounting, alt: "Geyser mounting" },
     { id: 9, src: geyserSetup, alt: "Geyser setup" },
     { id: 10, src: drainExcavation, alt: "Drain excavation work" },
+    { id: 11, src: pipeWork, alt: "Exterior pipe work" },
+    { id: 12, src: modernBathroom, alt: "Modern bathroom with bathtub" },
+    { id: 13, src: copperInstallation, alt: "Copper pipe installation" },
   ];
 
   return (
