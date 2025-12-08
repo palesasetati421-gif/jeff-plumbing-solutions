@@ -1,10 +1,5 @@
-import { useState } from "react";
-import { Star, MessageSquare, User, ExternalLink } from "lucide-react";
+import { Star, User, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { useToast } from "@/hooks/use-toast";
 
 interface Review {
   id: number;
@@ -16,14 +11,6 @@ interface Review {
 }
 
 const ReviewsSection = () => {
-  const { toast } = useToast();
-  const [showForm, setShowForm] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    rating: 5,
-    text: "",
-  });
-
   // Static Google reviews - update these with actual reviews
   const reviews: Review[] = [
     {
@@ -59,46 +46,6 @@ const ReviewsSection = () => {
       source: "google",
     },
   ];
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleRatingChange = (rating: number) => {
-    setFormData((prev) => ({ ...prev, rating }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!formData.name || !formData.text) {
-      toast({
-        title: "Missing Information",
-        description: "Please fill in your name and review.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    // Send review via WhatsApp for now
-    const message = `New Website Review:
-
-*Name:* ${formData.name}
-*Rating:* ${"⭐".repeat(formData.rating)}
-*Review:* ${formData.text}`;
-
-    const whatsappUrl = `https://wa.me/27685805133?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, "_blank");
-
-    toast({
-      title: "Thank you for your review!",
-      description: "We appreciate your feedback.",
-    });
-
-    setFormData({ name: "", rating: 5, text: "" });
-    setShowForm(false);
-  };
 
   return (
     <section id="reviews" className="py-24 bg-background">
@@ -163,93 +110,19 @@ const ReviewsSection = () => {
           ))}
         </div>
 
-        {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+        {/* Action Button - Google Reviews Only */}
+        <div className="flex justify-center">
           <a
             href="https://www.google.com/maps/place/Jeffplumbing"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Button variant="outline" className="gap-2">
+            <Button variant="cta" className="gap-2">
               <ExternalLink className="w-4 h-4" />
-              See All Google Reviews
+              Leave a Review on Google
             </Button>
           </a>
-          <Button
-            variant="cta"
-            className="gap-2"
-            onClick={() => setShowForm(!showForm)}
-          >
-            <MessageSquare className="w-4 h-4" />
-            Write a Review
-          </Button>
         </div>
-
-        {/* Review Form */}
-        {showForm && (
-          <div className="max-w-lg mx-auto bg-card rounded-2xl p-8 shadow-soft border border-border/50 animate-fade-in">
-            <h3 className="text-xl font-bold text-card-foreground mb-6">Share Your Experience</h3>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="review-name">Your Name</Label>
-                <Input
-                  id="review-name"
-                  name="name"
-                  placeholder="Enter your name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label>Your Rating</Label>
-                <div className="flex gap-2">
-                  {[1, 2, 3, 4, 5].map((rating) => (
-                    <button
-                      key={rating}
-                      type="button"
-                      onClick={() => handleRatingChange(rating)}
-                      className="focus:outline-none"
-                    >
-                      <Star
-                        className={`w-8 h-8 transition-colors ${
-                          rating <= formData.rating
-                            ? "fill-accent text-accent"
-                            : "text-muted hover:text-accent"
-                        }`}
-                      />
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="review-text">Your Review</Label>
-                <Textarea
-                  id="review-text"
-                  name="text"
-                  placeholder="Tell us about your experience..."
-                  value={formData.text}
-                  onChange={handleInputChange}
-                  className="min-h-[100px]"
-                />
-              </div>
-
-              <div className="flex gap-4 pt-2">
-                <Button type="submit" variant="cta" className="flex-1">
-                  Submit Review
-                </Button>
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={() => setShowForm(false)}
-                >
-                  Cancel
-                </Button>
-              </div>
-            </form>
-          </div>
-        )}
       </div>
     </section>
   );
