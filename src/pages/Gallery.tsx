@@ -1,19 +1,31 @@
 import { Link } from "react-router-dom";
-import { Phone, Droplets, ArrowLeft, Image } from "lucide-react";
+import { Phone, Droplets, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+// Import gallery images
+import geyserInstallation from "@/assets/gallery/geyser-installation.jpg";
+import drainExcavation from "@/assets/gallery/drain-excavation.jpg";
+import geyserUnits from "@/assets/gallery/geyser-units.jpg";
+import showerInstallation from "@/assets/gallery/shower-installation.jpg";
+import geyserMounting from "@/assets/gallery/geyser-mounting.jpg";
+import kitchenSink from "@/assets/gallery/kitchen-sink.jpg";
+import geyserSetup from "@/assets/gallery/geyser-setup.jpg";
+import bathroomInstall from "@/assets/gallery/bathroom-install.jpg";
+import copperPiping from "@/assets/gallery/copper-piping.jpg";
+import bathtubInstall from "@/assets/gallery/bathtub-install.webp";
+
 const Gallery = () => {
-  // Placeholder images - replace with actual images
   const galleryImages = [
-    { id: 1, alt: "Plumbing work 1", placeholder: true },
-    { id: 2, alt: "Plumbing work 2", placeholder: true },
-    { id: 3, alt: "Plumbing work 3", placeholder: true },
-    { id: 4, alt: "Plumbing work 4", placeholder: true },
-    { id: 5, alt: "Plumbing work 5", placeholder: true },
-    { id: 6, alt: "Plumbing work 6", placeholder: true },
-    { id: 7, alt: "Plumbing work 7", placeholder: true },
-    { id: 8, alt: "Plumbing work 8", placeholder: true },
-    { id: 9, alt: "Plumbing work 9", placeholder: true },
+    { id: 1, src: bathtubInstall, alt: "Modern bathtub installation" },
+    { id: 2, src: showerInstallation, alt: "Shower installation" },
+    { id: 3, src: copperPiping, alt: "Copper pipe work" },
+    { id: 4, src: bathroomInstall, alt: "Bathroom installation" },
+    { id: 5, src: kitchenSink, alt: "Kitchen sink installation" },
+    { id: 6, src: geyserInstallation, alt: "Geyser installation" },
+    { id: 7, src: geyserUnits, alt: "Geyser units" },
+    { id: 8, src: geyserMounting, alt: "Geyser mounting" },
+    { id: 9, src: geyserSetup, alt: "Geyser setup" },
+    { id: 10, src: drainExcavation, alt: "Drain excavation work" },
   ];
 
   return (
@@ -77,19 +89,11 @@ const Gallery = () => {
                 key={image.id}
                 className="group relative aspect-square rounded-2xl overflow-hidden bg-muted border border-border/50 shadow-soft hover:shadow-glow transition-all duration-300"
               >
-                {image.placeholder ? (
-                  <div className="absolute inset-0 flex flex-col items-center justify-center text-muted-foreground">
-                    <Image className="w-16 h-16 mb-4 opacity-50" />
-                    <span className="text-sm">Image {image.id}</span>
-                    <span className="text-xs opacity-60">Replace with actual photo</span>
-                  </div>
-                ) : (
-                  <img
-                    src=""
-                    alt={image.alt}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                )}
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
               </div>
             ))}
           </div>
