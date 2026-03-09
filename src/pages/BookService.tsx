@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Phone, Droplets, ArrowLeft, Calendar, Clock, User, MessageSquare, Send, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
