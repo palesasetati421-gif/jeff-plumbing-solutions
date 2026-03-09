@@ -19,6 +19,7 @@ const BookService = () => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
+    suburb: "",
     address: "",
     service: "",
     problem: "",
