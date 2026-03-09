@@ -47,7 +47,7 @@ const BookService = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.phone || !formData.service || !date || !time) {
+    if (!formData.name || !formData.phone || !formData.address || !formData.service || !date || !time) {
       toast({
         title: "Missing Information",
         description: "Please fill in all required fields.",
