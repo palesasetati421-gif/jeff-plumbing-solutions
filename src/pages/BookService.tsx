@@ -19,10 +19,20 @@ const BookService = () => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
+    suburb: "",
     address: "",
     service: "",
     problem: "",
   });
+
+  const suburbs = [
+    "Sandton", "Randburg", "Roodepoort", "Midrand", "Fourways",
+    "Bryanston", "Northcliff", "Linden", "Parktown", "Rosebank",
+    "Alberton", "Germiston", "Boksburg", "Benoni", "Edenvale",
+    "Kempton Park", "Bedfordview", "Springs", "Brakpan",
+    "Soweto", "Lenasia", "Johannesburg South", "Mondeor", "Glenvista",
+    "Johannesburg CBD", "Other",
+  ];
 
   const services = [
     "Water Leak Detection",
@@ -47,7 +57,7 @@ const BookService = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.phone || !formData.address || !formData.service || !date || !time) {
+    if (!formData.name || !formData.phone || !formData.suburb || !formData.address || !formData.service || !date || !time) {
       toast({
         title: "Missing Information",
         description: "Please fill in all required fields.",
@@ -61,6 +71,7 @@ const BookService = () => {
 
 *Name:* ${formData.name}
 *Phone:* ${formData.phone}
+*Area:* ${formData.suburb}
 *Address:* ${formData.address}
 *Service:* ${formData.service}
 *Date:* ${format(date, "PPP")}
@@ -81,6 +92,7 @@ const BookService = () => {
 
 *Name:* ${formData.name || "Not provided"}
 *Phone:* ${formData.phone || "Not provided"}
+*Area:* ${formData.suburb || "Not provided"}
 *Address:* ${formData.address || "Not provided"}
 *Service:* ${formData.service || "Not specified"}
 *Details:* ${formData.problem || "Please call me to discuss."}`;
@@ -179,11 +191,31 @@ const BookService = () => {
                 />
               </div>
 
-              {/* Address */}
+              {/* Suburb / Area */}
+              <div className="space-y-2">
+                <Label className="flex items-center gap-2 text-foreground">
+                  <MapPin className="w-4 h-4" />
+                  Area / Suburb *
+                </Label>
+                <Select onValueChange={(value) => setFormData((prev) => ({ ...prev, suburb: value }))}>
+                  <SelectTrigger className="h-12">
+                    <SelectValue placeholder="Select your area" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {suburbs.map((suburb) => (
+                      <SelectItem key={suburb} value={suburb}>
+                        {suburb}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Street Address */}
               <div className="space-y-2">
                 <Label htmlFor="address" className="flex items-center gap-2 text-foreground">
                   <MapPin className="w-4 h-4" />
-                  Address *
+                  Street Address *
                 </Label>
                 <Input
                   id="address"
