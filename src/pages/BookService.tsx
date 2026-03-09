@@ -29,10 +29,19 @@ const BookService = () => {
     "Sandton", "Randburg", "Roodepoort", "Midrand", "Fourways",
     "Bryanston", "Northcliff", "Linden", "Parktown", "Rosebank",
     "Alberton", "Germiston", "Boksburg", "Benoni", "Edenvale",
-    "Kempton Park", "Bedfordview", "Springs", "Brakpan",
+    "Kempton Park", "Bedfordview", "Springs", "Brakpan", "Tembisa",
     "Soweto", "Lenasia", "Johannesburg South", "Mondeor", "Glenvista",
-    "Johannesburg CBD", "Other",
+    "Johannesburg CBD",
   ];
+
+  const [suburbOpen, setSuburbOpen] = useState(false);
+
+  const filteredSuburbs = useMemo(() => {
+    if (!formData.suburb) return suburbs;
+    return suburbs.filter((s) =>
+      s.toLowerCase().includes(formData.suburb.toLowerCase())
+    );
+  }, [formData.suburb]);
 
   const services = [
     "Water Leak Detection",
