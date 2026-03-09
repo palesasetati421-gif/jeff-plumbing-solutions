@@ -92,6 +92,7 @@ const BookService = () => {
 
 *Name:* ${formData.name || "Not provided"}
 *Phone:* ${formData.phone || "Not provided"}
+*Area:* ${formData.suburb || "Not provided"}
 *Address:* ${formData.address || "Not provided"}
 *Service:* ${formData.service || "Not specified"}
 *Details:* ${formData.problem || "Please call me to discuss."}`;
