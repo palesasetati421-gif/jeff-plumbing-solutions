@@ -182,7 +182,7 @@ const BookService = () => {
               {/* Address */}
               <div className="space-y-2">
                 <Label htmlFor="address" className="flex items-center gap-2 text-foreground">
-                  <MessageSquare className="w-4 h-4" />
+                  <MapPin className="w-4 h-4" />
                   Address *
                 </Label>
                 <Input
