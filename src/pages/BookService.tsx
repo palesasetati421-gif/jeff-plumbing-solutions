@@ -61,6 +61,7 @@ const BookService = () => {
 
 *Name:* ${formData.name}
 *Phone:* ${formData.phone}
+*Address:* ${formData.address}
 *Service:* ${formData.service}
 *Date:* ${format(date, "PPP")}
 *Time:* ${time}
