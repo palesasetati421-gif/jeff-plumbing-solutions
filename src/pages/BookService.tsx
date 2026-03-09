@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Phone, Droplets, ArrowLeft, Calendar, Clock, User, MessageSquare, Send, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -29,10 +29,19 @@ const BookService = () => {
     "Sandton", "Randburg", "Roodepoort", "Midrand", "Fourways",
     "Bryanston", "Northcliff", "Linden", "Parktown", "Rosebank",
     "Alberton", "Germiston", "Boksburg", "Benoni", "Edenvale",
-    "Kempton Park", "Bedfordview", "Springs", "Brakpan",
+    "Kempton Park", "Bedfordview", "Springs", "Brakpan", "Tembisa",
     "Soweto", "Lenasia", "Johannesburg South", "Mondeor", "Glenvista",
-    "Johannesburg CBD", "Other",
+    "Johannesburg CBD",
   ];
+
+  const [suburbOpen, setSuburbOpen] = useState(false);
+
+  const filteredSuburbs = useMemo(() => {
+    if (!formData.suburb) return suburbs;
+    return suburbs.filter((s) =>
+      s.toLowerCase().includes(formData.suburb.toLowerCase())
+    );
+  }, [formData.suburb]);
 
   const services = [
     "Water Leak Detection",
@@ -192,23 +201,41 @@ const BookService = () => {
               </div>
 
               {/* Suburb / Area */}
-              <div className="space-y-2">
-                <Label className="flex items-center gap-2 text-foreground">
+              <div className="space-y-2 relative">
+                <Label htmlFor="suburb" className="flex items-center gap-2 text-foreground">
                   <MapPin className="w-4 h-4" />
                   Area / Suburb *
                 </Label>
-                <Select onValueChange={(value) => setFormData((prev) => ({ ...prev, suburb: value }))}>
-                  <SelectTrigger className="h-12">
-                    <SelectValue placeholder="Select your area" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {suburbs.map((suburb) => (
-                      <SelectItem key={suburb} value={suburb}>
+                <Input
+                  id="suburb"
+                  name="suburb"
+                  placeholder="Type your area (e.g. Sandton)"
+                  value={formData.suburb}
+                  onChange={(e) => {
+                    handleInputChange(e);
+                    setSuburbOpen(true);
+                  }}
+                  onFocus={() => setSuburbOpen(true)}
+                  onBlur={() => setTimeout(() => setSuburbOpen(false), 150)}
+                  autoComplete="off"
+                  className="h-12"
+                />
+                {suburbOpen && filteredSuburbs.length > 0 && formData.suburb && (
+                  <ul className="absolute z-50 top-full mt-1 w-full max-h-48 overflow-auto rounded-md border bg-popover text-popover-foreground shadow-md">
+                    {filteredSuburbs.map((suburb) => (
+                      <li
+                        key={suburb}
+                        className="cursor-pointer px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground"
+                        onMouseDown={() => {
+                          setFormData((prev) => ({ ...prev, suburb }));
+                          setSuburbOpen(false);
+                        }}
+                      >
                         {suburb}
-                      </SelectItem>
+                      </li>
                     ))}
-                  </SelectContent>
-                </Select>
+                  </ul>
+                )}
               </div>
 
               {/* Street Address */}
