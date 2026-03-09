@@ -200,6 +200,22 @@ const BookService = () => {
                 />
               </div>
 
+              {/* Street Address */}
+              <div className="space-y-2">
+                <Label htmlFor="address" className="flex items-center gap-2 text-foreground">
+                  <MapPin className="w-4 h-4" />
+                  Street Address *
+                </Label>
+                <Input
+                  id="address"
+                  name="address"
+                  placeholder="Enter your street address"
+                  value={formData.address}
+                  onChange={handleInputChange}
+                  className="h-12"
+                />
+              </div>
+
               {/* Suburb / Area */}
               <div className="space-y-2 relative">
                 <Label htmlFor="suburb" className="flex items-center gap-2 text-foreground">
@@ -209,7 +225,7 @@ const BookService = () => {
                 <Input
                   id="suburb"
                   name="suburb"
-                  placeholder="Type your area (e.g. Sandton)"
+                  placeholder="Type your area (e.g. Tembisa, Midrand, etc.)"
                   value={formData.suburb}
                   onChange={(e) => {
                     handleInputChange(e);
@@ -236,22 +252,6 @@ const BookService = () => {
                     ))}
                   </ul>
                 )}
-              </div>
-
-              {/* Street Address */}
-              <div className="space-y-2">
-                <Label htmlFor="address" className="flex items-center gap-2 text-foreground">
-                  <MapPin className="w-4 h-4" />
-                  Street Address *
-                </Label>
-                <Input
-                  id="address"
-                  name="address"
-                  placeholder="Enter your street address"
-                  value={formData.address}
-                  onChange={handleInputChange}
-                  className="h-12"
-                />
               </div>
 
               {/* Service */}
