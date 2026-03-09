@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Phone, Droplets, ArrowLeft, Calendar, Clock, User, MessageSquare, Send } from "lucide-react";
+import { Phone, Droplets, ArrowLeft, Calendar, Clock, User, MessageSquare, Send, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -19,6 +19,7 @@ const BookService = () => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
+    address: "",
     service: "",
     problem: "",
   });
@@ -46,7 +47,7 @@ const BookService = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.phone || !formData.service || !date || !time) {
+    if (!formData.name || !formData.phone || !formData.address || !formData.service || !date || !time) {
       toast({
         title: "Missing Information",
         description: "Please fill in all required fields.",
@@ -60,6 +61,7 @@ const BookService = () => {
 
 *Name:* ${formData.name}
 *Phone:* ${formData.phone}
+*Address:* ${formData.address}
 *Service:* ${formData.service}
 *Date:* ${format(date, "PPP")}
 *Time:* ${time}
@@ -79,6 +81,7 @@ const BookService = () => {
 
 *Name:* ${formData.name || "Not provided"}
 *Phone:* ${formData.phone || "Not provided"}
+*Address:* ${formData.address || "Not provided"}
 *Service:* ${formData.service || "Not specified"}
 *Details:* ${formData.problem || "Please call me to discuss."}`;
 
@@ -171,6 +174,22 @@ const BookService = () => {
                   type="tel"
                   placeholder="Enter your phone number"
                   value={formData.phone}
+                  onChange={handleInputChange}
+                  className="h-12"
+                />
+              </div>
+
+              {/* Address */}
+              <div className="space-y-2">
+                <Label htmlFor="address" className="flex items-center gap-2 text-foreground">
+                  <MapPin className="w-4 h-4" />
+                  Address *
+                </Label>
+                <Input
+                  id="address"
+                  name="address"
+                  placeholder="Enter your street address"
+                  value={formData.address}
                   onChange={handleInputChange}
                   className="h-12"
                 />
