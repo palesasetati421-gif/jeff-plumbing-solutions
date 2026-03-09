@@ -24,6 +24,15 @@ const BookService = () => {
     problem: "",
   });
 
+  const suburbs = [
+    "Sandton", "Randburg", "Roodepoort", "Midrand", "Fourways",
+    "Bryanston", "Northcliff", "Linden", "Parktown", "Rosebank",
+    "Alberton", "Germiston", "Boksburg", "Benoni", "Edenvale",
+    "Kempton Park", "Bedfordview", "Springs", "Brakpan",
+    "Soweto", "Lenasia", "Johannesburg South", "Mondeor", "Glenvista",
+    "Johannesburg CBD", "Other",
+  ];
+
   const services = [
     "Water Leak Detection",
     "Geyser Services",
