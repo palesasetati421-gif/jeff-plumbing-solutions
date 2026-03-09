@@ -191,11 +191,31 @@ const BookService = () => {
                 />
               </div>
 
-              {/* Address */}
+              {/* Suburb / Area */}
+              <div className="space-y-2">
+                <Label className="flex items-center gap-2 text-foreground">
+                  <MapPin className="w-4 h-4" />
+                  Area / Suburb *
+                </Label>
+                <Select onValueChange={(value) => setFormData((prev) => ({ ...prev, suburb: value }))}>
+                  <SelectTrigger className="h-12">
+                    <SelectValue placeholder="Select your area" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {suburbs.map((suburb) => (
+                      <SelectItem key={suburb} value={suburb}>
+                        {suburb}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Street Address */}
               <div className="space-y-2">
                 <Label htmlFor="address" className="flex items-center gap-2 text-foreground">
                   <MapPin className="w-4 h-4" />
-                  Address *
+                  Street Address *
                 </Label>
                 <Input
                   id="address"
