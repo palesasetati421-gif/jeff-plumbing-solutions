@@ -179,6 +179,22 @@ const BookService = () => {
                 />
               </div>
 
+              {/* Address */}
+              <div className="space-y-2">
+                <Label htmlFor="address" className="flex items-center gap-2 text-foreground">
+                  <MessageSquare className="w-4 h-4" />
+                  Address *
+                </Label>
+                <Input
+                  id="address"
+                  name="address"
+                  placeholder="Enter your street address"
+                  value={formData.address}
+                  onChange={handleInputChange}
+                  className="h-12"
+                />
+              </div>
+
               {/* Service */}
               <div className="space-y-2">
                 <Label className="flex items-center gap-2 text-foreground">
